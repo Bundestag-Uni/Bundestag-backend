@@ -1,7 +1,7 @@
 # Bundestag-backend
-
-
-# Bundestag Datenbank - README
+## Sccraper
+Der Scraper leitet die Abfrage der Bundestags Daten
+Starte den Container mit sudo docker start `container_id` 
 
 ## Übersicht
 Die Bundestag-Datenbank enthält mehrere Tabellen, die strukturierte Informationen zu Mitgliedern des Bundestages, deren Zwischenrufen sowie weiteren relevanten Details speichern.
