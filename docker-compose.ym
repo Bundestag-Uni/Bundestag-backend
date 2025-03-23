@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  scraper:
+    build:
+      context: ./Scraper
+    depends_on:
+      db:
+        condition: service_healthy  # Wait for db to be healthy
+
+  db:
+    build:
+      context: ./postgres  # Custom PostgreSQL image with init SQL
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ziewfgru86gtewi77f7gti7etgwf78i
+      POSTGRES_DB: Bundestag
+    ports:
+      - "3100:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "3000:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: TestTest5544332211
+    volumes:
+      - ./pgpass:/pgpass
+    entrypoint:
+      - /bin/sh
+      - -c
+      - "chmod 600 /pgpass && /entrypoint.sh"
+    user: root
+    depends_on:
+      db:
+        condition: service_healthy
+configs:
+  pgpass:
+    file: ./pgpass  # File path for pgpass
+  servers_json:
+    file: ./servers.json  # File path for servers.json
+
+volumes:
+  postgres_data:
