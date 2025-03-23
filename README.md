@@ -1,5 +1,5 @@
 # Bundestag-backend
-## Sccraper
+## Scraper
 Der Scraper leitet die Abfrage der Bundestags Daten
 Starte den Container mit sudo docker start `container_id` 
 
