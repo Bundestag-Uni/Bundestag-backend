@@ -76,7 +76,11 @@ Diese Tabelle beinhaltet die Reden effizienz der Reden
   - `num_edges`: Anzahl der Vernetzungen des Grafen
   - `efficiency`:  Nodes * Edges / Tokens
  
-
+---
+Start everything using 
+```
+sudo docker compose up --build
+```
 
 
 
